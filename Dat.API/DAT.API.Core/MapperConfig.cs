@@ -16,6 +16,7 @@ namespace DAT.API.Core
             return new MapperConfiguration(config =>
             {
                 config.CreateMap<Product, ProductDto>().ReverseMap();
+                config.CreateMap<Seller, SellerDto>().ReverseMap();
             });
         }
     }

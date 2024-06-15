@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
 
 namespace DAT.API.DAL.Models;
 
-[Table("Product")]
-[Index("Id", Name = "IX_Product_Id")]
 public partial class Product
 {
     [Key]
@@ -20,4 +15,10 @@ public partial class Product
     public int LeftItems { get; set; }
 
     public string Description { get; set; } = null!;
+
+    public Guid SellerId { get; set; }
+
+    [ForeignKey("SellerId")]
+    [InverseProperty("Products")]
+    public virtual Seller Seller { get; set; } = null!;
 }

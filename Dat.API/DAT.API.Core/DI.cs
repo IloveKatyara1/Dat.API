@@ -9,6 +9,7 @@ namespace DAT.API.Core
         public static IServiceCollection AddCore(this IServiceCollection services)
         {
             services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<ISellerService, SellerService>();
 
             return services;
         }

@@ -14,7 +14,8 @@ dotnet ef dbcontext scaffold `
 "Server=DESKTOP-HPNA4RC;Database=Dat;Trusted_Connection=True;MultipleActiveResultSets=True;TrustServerCertificate=True;" `
 Microsoft.EntityFrameworkCore.SqlServer `
 `
---table Product `
+--table Products `
+--table Sellers `
 `
 --data-annotations `
 --context AppDbContext `

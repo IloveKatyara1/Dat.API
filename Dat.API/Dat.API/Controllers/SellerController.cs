@@ -6,12 +6,12 @@ namespace DAT.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProductController : ControllerBase
+    public class SellerController : ControllerBase
     {
-        private readonly IProductService _productService;
-        public ProductController(IProductService productService)
+        private readonly ISellerService _sellerService;
+        public SellerController(ISellerService sellerService)
         {
-            _productService = productService;
+            _sellerService = sellerService;
         }
 
         [HttpGet("")]
@@ -19,7 +19,7 @@ namespace DAT.API.Controllers
         {
             try
             {
-                return Ok(await _productService.GetAll());
+                return Ok(await _sellerService.GetAll());
             }
             catch (Exception ex)
             {
@@ -32,7 +32,7 @@ namespace DAT.API.Controllers
         {
             try
             {
-                return Ok(await _productService.GetById(id));
+                return Ok(await _sellerService.GetById(id));
             }
             catch (Exception ex)
             {
@@ -41,11 +41,11 @@ namespace DAT.API.Controllers
         }
 
         [HttpPost("")]
-        public async Task<IActionResult> UpdateOrInsert(ProductDto product)
+        public async Task<IActionResult> UpdateOrInsert(SellerDto seller)
         {
             try
             {
-                return Ok(await _productService.UpdateOrInsert(product));
+                return Ok(await _sellerService.UpdateOrInsert(seller));
             }
             catch (Exception ex)
             {
@@ -58,26 +58,12 @@ namespace DAT.API.Controllers
         {
             try
             {
-                return Ok(await _productService.DeleteById(id));
+                return Ok(await _sellerService.DeleteById(id));
             }
             catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
-
-        [HttpGet("sellerId")]
-        public async Task<IActionResult> GetBySellerId(Guid sellerId)
-        {
-            try
-            {
-                return Ok(await _productService.GetBySellerId(sellerId));
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
     }
 }

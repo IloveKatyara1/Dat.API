@@ -41,9 +41,18 @@ namespace DAT.API.Core.Services
 
         public async Task<ProductDto> GetById(Guid id)
         {
-            var model = await _db.Products.FirstOrDefaultAsync(x => x.Id == id);
+            var model = await _db.Products
+                .Include(x => x.Seller)
+                .FirstOrDefaultAsync(x => x.Id == id);
 
             return _mapper.Map<ProductDto>(model);
+        }
+
+        public async Task<List<ProductDto>> GetBySellerId(Guid sellerId)
+        {
+            var models = await _db.Products.Where(p => p.SellerId == sellerId).ToListAsync();
+
+            return _mapper.Map<List<ProductDto>>(models);
         }
 
         public async Task<ProductDto> UpdateOrInsert(ProductDto product)

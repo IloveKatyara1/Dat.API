@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DAT.API.DAL.Models;
 
 namespace DAT.API.Core.DTOs
 {
@@ -13,5 +9,7 @@ namespace DAT.API.Core.DTOs
         public string Description { get; set; }
         public int Price { get; set; }
         public int LeftItems { get; set; }
+        public Guid SellerId { get; set; }
+        public virtual SellerDto? Seller { get; set; }
     }
 }

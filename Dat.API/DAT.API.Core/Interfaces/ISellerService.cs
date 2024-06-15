@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAT.API.Core.Interfaces
 {
-    public interface IProductService : IBaseService<ProductDto>
+    public interface ISellerService : IBaseService<SellerDto>
     {
-        public Task<List<ProductDto>> GetBySellerId(Guid sellerId);
     }
 }

@@ -14,9 +14,22 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Product> Products { get; set; }
 
+    public virtual DbSet<Seller> Sellers { get; set; }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Product>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_Product");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+
+            entity.HasOne(d => d.Seller).WithMany(p => p.Products)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Product_Seller");
+        });
+
+        modelBuilder.Entity<Seller>(entity =>
         {
             entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
         });
